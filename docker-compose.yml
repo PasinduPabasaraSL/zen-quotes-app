@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  server:
+    build: ./server
+    container_name: zen-backend
+    ports:
+      - "5000:5000"
+    restart: unless-stopped
+
+  client:
+    build: ./client
+    container_name: zen-frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - server
+    restart: unless-stopped
